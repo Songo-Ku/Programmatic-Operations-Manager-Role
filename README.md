@@ -2,6 +2,7 @@
 **Data analysis** Python/Pandas 
 Repo prepared to recruitment process to role: **Programmatic Operations Manager**.
 
+https://github.com/Songo-Ku/Programmatic-Operations-Manager-Role
 ---
 
 ## Content
