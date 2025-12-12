@@ -70,6 +70,6 @@ pip-wheel-metadata/
 Prebid_solution_task_3/image/
 
 # W folderze csv_files nie wrzucać plików CSV
-csv_files/*
-xlsx_files/*
+#csv_files/*
+#xlsx_files/*
 
