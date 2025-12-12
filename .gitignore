@@ -57,7 +57,10 @@ pip-wheel-metadata/
 # Dane / pliki binarne
 ############################
 # globalnie wykluczamy CSV i XLSX
-
+*.csv
+*.CSV
+*.xlsx
+*.XLSX
 
 ############################
 # Twoje dodatkowe wymagania
