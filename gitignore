@@ -1,0 +1,74 @@
+############################
+# Python
+############################
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenv / środowiska
+.env
+.venv
+venv/
+env/
+ENV/
+*.env
+
+############################
+# PyCharm / JetBrains
+############################
+.idea/
+*.iml
+
+############################
+# System / IDE ogólne
+############################
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+############################
+# Testy / coverage
+############################
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+############################
+# Build / dist
+############################
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+############################
+# Dane / pliki binarne
+############################
+# globalnie wykluczamy CSV i XLSX
+*.csv
+*.CSV
+*.xlsx
+*.XLSX
+
+############################
+# Twoje dodatkowe wymagania
+############################
+
+# Nie wrzucać zawartości folderu obrazków
+Prebid_solution_task_3/image/
+
+# W folderze csv_files nie wrzucać plików CSV
+csv_files/*.csv
+csv_files/*.CSV

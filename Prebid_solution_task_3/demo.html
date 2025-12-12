@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>RTB House Prebid Demo 728x90 </title>
+    <!-- CDN Prebid.js NOT-FOR-PROD (latest) -->
+    <script src="https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #banner-728x90 {
+            width: 728px; height: 90px;
+            border: 2px solid #333;
+            margin: 20px 0;
+            background: #f0f0f0;
+            display: flex; align-items: center;
+            justify-content: center;
+            font-size: 14px; font-weight: bold;
+        }
+        #auction-status {
+            padding: 10px; margin: 10px 0;
+            border-radius: 4px; font-weight: bold;
+        }
+        .win { background: #dcfce7; color: #166534; }
+        .lose { background: #fee2e2; color: #991b1b; }
+        #debug {
+            background: #f5f5f5; padding: 15px;
+            font-size: 12px; max-height: 400px;
+            overflow: auto; white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ddd; border-radius: 4px;
+        }
+        h1 { color: #2563eb; }
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #banner-728x90 {
+            width: 728px; height: 90px;
+            border: 2px solid #333;
+            margin: 20px 0;
+            background: #f0f0f0;
+            display: flex; align-items: center;
+            justify-content: center;
+            font-size: 14px; font-weight: bold;
+        }
+        #auction-status {
+            padding: 10px; margin: 10px 0;
+            border-radius: 4px; font-weight: bold;
+        }
+        .win { background: #dcfce7; color: #166534; }
+        .lose { background: #fee2e2; color: #991b1b; }
+        #debug {
+            background: #f5f5f5; padding: 15px;
+            font-size: 12px; max-height: 400px;
+            overflow: auto; white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ddd; border-radius: 4px;
+        }
+        h1 { color: #2563eb; }
+    </style>
+</head>
+<body>
+    <h1>🎯 RTB House Prebid Demo - 728x90</h1>
+
+    <div id="banner-728x90">⏳ Waiting for RTB House auction...</div>
+    <div id="auction-status">🔄 Inicjalizacja Prebid...</div>
+    <div id="debug">🔄 Loading Prebid.js latest...</div>
+
+    <script>
+        // FALLBACK HTML
+        const FALLBACK_HTML = '<img src="data:image/jpeg;base64,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" width="728" height="90" style="width:100%;height:100%;object-fit:cover;">';
+
+        // pbjs main prebid object automatically created by the Prebid.js script
+        pbjs.que.push(function() {
+            const debugEl = document.getElementById('debug');
+            const statusEl = document.getElementById('auction-status');
+            const bannerEl = document.getElementById('banner-728x90');
+
+            debugEl.innerHTML = '✅ Prebid.js latest załadowany!\n';
+            statusEl.textContent = '✅ Konfiguracja RTB House...';
+
+            // 1. GLOBALNA KONFIGURACJA (setConfig - z docs)
+            <!--       widzac bledy dla CMP wylaczylem je, tak samo gdpr dalem zgodne na ciastka,      -->
+            pbjs.setConfig({
+                debug: true,                    // ✅ Debug mode
+                bidderTimeout: 3000,           // ✅ Global timeout
+                consentManagement: {
+                    cmpApi: 'none',     // ✅ Wyłącza CMP
+                    gdprApplies: false  // ✅ Brak GDPR
+                },
+                deviceAccess: true,         // ✅ Pozwala na cookies (jeśli potrzebne)
+                userSync: {
+                    syncEnabled: true    // ✅ Umożliwia user sync RTB House
+                }
+            });
+
+            debugEl.innerHTML += '📋 Global config OK\n';
+
+            // 2. AD UNIT DEFINICJA (adUnitCode = DOM ID)
+            <!--      to powinno być ustawione prawidłowo.       -->
+            <!--             zgodnie z dokumentacją https://docs.prebid.org/dev-docs/publisher-api-reference/addAdUnits.html#addAdUnits-MediaTypes-->
+            pbjs.addAdUnits([{
+                code: 'banner-728x90',          // ✅ = DOM #banner-728x90
+                mediaTypes: {
+                    banner: {
+                        sizes: [[728, 90]]      // ✅ Leaderboard
+                    }
+                },
+                bids: [{
+                    bidder: 'rtbhouse',         // ✅ Nazwa adaptera
+                    params: {                   // ✅ RTB House params (z docs)
+                        publisherId: 'fr2TAJpVFTb0Ng54JU8p',  // ✅ ZADANY
+                        region: 'prebid-eu'     // ✅ Wymagane
+                    }
+                }]
+            }]);
+
+            debugEl.innerHTML += '📡 AdUnit dodany: banner-728x90\n';
+            statusEl.textContent = '🚀 Uruchamiam aukcję RTB House...';
+
+            // 3. AUKCJA (requestBids - z docs)
+            pbjs.requestBids({
+                timeout: 3000,                      // ✅ 3s timeout
+                adUnitCodes: ['banner-728x90'],     // ✅ Slot do licytacji
+                bidsBackHandler: function(bidResponses, timedOut, auctionId) {  // ✅ Z docs
+                    debugEl.innerHTML += `\n📊 WYNIKI AUKCJI:\n`;
+                    debugEl.innerHTML += `Timeout: ${timedOut ? 'TAK' : 'NIE'}\n`;
+                    debugEl.innerHTML += `Auction ID: ${auctionId || 'BRAK'}\n`;
+
+                    // 4. NAJLEPSZY BID (getHighestCpmBids - standard)
+                    <!--  powinno działać zgodnie z dokumetnacja: https://docs.prebid.org/dev-docs/publisher-api-reference/getHighestCpmBids.html                 -->
+                    <!--          dla baneru zwroci wygrywajacy bid, czyli dobrze          -->
+                    const highestCpmBids = pbjs.getHighestCpmBids('banner-728x90');
+                    console.log('Highest CPM Bids:', highestCpmBids);
+                    <!--        dobre zabezpieczenie w razie null            -->
+                    const highest = highestCpmBids.length > 0 ? highestCpmBids[0] : null;
+
+                    debugEl.innerHTML += `Bidów: ${highestCpmBids.length}\n`;
+                    debugEl.innerHTML += `Najlepszy CPM: ${highest?.cpm?.toFixed(2) || 'BRAK'}\n`;
+                    debugEl.innerHTML += `Bidder: ${highest?.bidder || 'BRAK'}\n`;
+                    debugEl.innerHTML += `Ad ID: ${highest?.adId || 'BRAK'}\n`;
+
+                    <!--  poprawka z pbjs.renderAd na  -->
+                    // 5. RENDER LOGIC (POPRAWNE - bez renderAd!)
+                    if (highest && highest.cpm > 0 && highest.adm) {  // adm zamiast adId!
+                        bannerEl.innerHTML = highest.adm;             // ✅ Wstaw HTML z bidu
+                        statusEl.textContent = '🎉✅ RTB HOUSE WYGRAŁ AUKCJĘ!';
+                        statusEl.className = 'win';
+                        debugEl.innerHTML += '🎉✅ RTB HOUSE CREATIVE RENDERED!\n';
+                    } else {
+                        bannerEl.innerHTML = FALLBACK_HTML;
+                        statusEl.textContent = `❌ Brak wygranego bidu → FALLBACK`;
+                        statusEl.className = 'lose';
+                    }
+                }
+            });
+        });
+
+        // SAFETY NET - fallback po 7s
+        setTimeout(() => {
+            const bannerEl = document.getElementById('banner-728x90');
+            const statusEl = document.getElementById('auction-status');
+            if (bannerEl.innerHTML.includes('Waiting') || !bannerEl.children.length) {
+                bannerEl.innerHTML = FALLBACK_HTML;
+                statusEl.textContent = '⚠️ Safety Net → Fallback (7s timeout)';
+                statusEl.className = 'lose';
+                document.getElementById('debug').innerHTML += '\n⚠️ Safety Net activated\n';
+            }
+        }, 7000);
+    </script>
+</body>
+</html>
