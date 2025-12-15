@@ -24,18 +24,17 @@ https://github.com/Songo-Ku/Programmatic-Operations-Manager-Role
 
 ```bash git clone https://github.com/TWOJE-KONTO/Programmatic-Operations-Manager-Test.git```
 
-### 2. Przejdź do katalogu projektu
+### 2. Go to main folder of project
 
 ```bash cd Programmatic-Operations-Manager-Test```
 
 
 
-## Instalacja
+## Instalation
 
-### 1. Wirtualne środowisko - utworzenie
-Tworzenie wirtualnego środowiska pozwala na izolację zależności projektu od globalnych bibliotek Pythona.
-Komenda może się różnić w zależności od systemu operacyjnego, ale też instalacji pythona czy roznych zmiennych srodowiskowych na systemie operacyjnym.
-W terminalu/cmd wpisz:
+### 1. Virtual env - create isolation
+Create virtual environment allow to isolate project dependencies from global python libraries. 
+Depend on system in terminal/cmd type:
 
 Windows:
 
@@ -45,8 +44,8 @@ Linux/Mac:
 
 ```bash python3 -m venv venv```
 
-### 2. Venv aktywacja
-Trzeba aktywować wirtualne środowisko, aby mieć wyizolowane biblioteki i projekt i działał zgodnie z wymaganiami projektu.
+### 2. Venv activation
+There has to be activated virtual environment.
 Windows:
 
 ```bash venv\Scripts\activate```
@@ -55,23 +54,24 @@ Linux/Mac:
 
 ```bash source venv/bin/activate```
 
-### 3. Zależności - instalacja
-W pliku requirements.txt znajduja sie wymagane biblioteki do poprawnego działania projektu.
+### 3. Dependencies - installation
+In file requirements.txt there are libraries/dependencies used in project.
 
 ```bash 
 python.exe -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Po samym zainstalowaniu zależności, projekt jest gotowy do uruchomienia, ale warto sprawdzić jakie mamy zainstalowane zależności komendą:
-pip freeze
-wyśweitlona zostanie lista zależności i wersji zainstalowanych w projekcie.
+After installation dependencies you can start work with project. Worth to check all installed by command:
+
+``` 
+pip freeze 
+```
 
 ## DATA-ANALYSIS
 
 ### Description
 I recommend use pycharm to use this project. It is easy to use and run scripts.
-
 
 ### 1. Run script
 You should be in place where you downloaded project recruRTB from github as git clone.
